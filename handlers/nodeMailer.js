@@ -15,7 +15,7 @@ exports.sendMail = (req, res, next) => {
   const message = {
     from: req.body.messageData.email, // Sender address
     to: "aaron.a.macken@gmail.com", // List of recipients
-    subject: `Devport Email from ${req.body.messageData.name} at ${req.body.messageData.company}`, // Subject line
+    subject: `Devport Email from ${req.body.messageData.name} - ${req.body.messageData.email} at ${req.body.messageData.company}`, // Subject line
     text: req.body.messageData.message // Plain text body
   };
   transport.sendMail(message, function(err, info) {
