@@ -5,9 +5,7 @@ const express = require("express"),
     bodyParser = require('body-parser'),
     errorHandler = require("./handlers/error"),
     resumeRoute = require('./routes/resume'),
-    nodeMailer = require('./routes/nodeMailer'),
-    PORT = 3001;
-
+    nodeMailer = require('./routes/nodeMailer');
 
 // ---------------- SERVER CONFIG --------------- //    
 require("dotenv").config();
@@ -40,6 +38,6 @@ app.use(function(req, res, next) {
 app.use(errorHandler);
 
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 3001, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
