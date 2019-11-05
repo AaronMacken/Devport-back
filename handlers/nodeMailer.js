@@ -4,7 +4,9 @@ require("dotenv").load;
 exports.sendMail = (req, res, next) => {
   // node mailer set up
   let transport = nodemailer.createTransport({
-    service: "gmail",
+    host: 'smtp.mail.yahoo.com',
+    port: 587,
+    service: "yahoo",
     auth: {
       user: process.env.SECRET_U,
       pass: process.env.SECRET_P
@@ -15,8 +17,8 @@ exports.sendMail = (req, res, next) => {
 
   // send email via node mailer
   const message = {
-    from: req.body.messageData.email, // Sender address
-    to: "aaron.a.macken@gmail.com", // List of recipients
+    from: "aaron_macken@yahoo.com", // Sender address
+    to: "aaron_macken@yahoo.com", // List of recipients
     subject: `Devport Email from ${req.body.messageData.name} - ${req.body.messageData.email} at ${req.body.messageData.company}`, // Subject line
     text: req.body.messageData.message // Plain text body
   };
