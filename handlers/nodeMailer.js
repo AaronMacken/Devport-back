@@ -4,10 +4,7 @@ require("dotenv").load;
 exports.sendMail = (req, res, next) => {
   // node mailer set up
   let transport = nodemailer.createTransport({
-    host: 'smtp.mail.yahoo.com',
-    port: 465,
-    service: "yahoo",
-    secure: false,
+    service: "gmail",
     auth: {
       user: process.env.SECRET_U,
       pass: process.env.SECRET_P
