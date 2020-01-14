@@ -13,6 +13,7 @@ const oauth2Client = new OAuth2(
 oauth2Client.setCredentials({
   refresh_token: `${process.env.SECRET_RT}`
 });
+
 const accessToken = oauth2Client.getAccessToken()
 
 exports.sendMail = (req, res, next) => {

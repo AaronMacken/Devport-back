@@ -5,7 +5,8 @@ const express = require("express"),
     bodyParser = require('body-parser'),
     errorHandler = require("./handlers/error"),
     resumeRoute = require('./routes/resume'),
-    nodeMailer = require('./routes/nodeMailer');
+    nodeMailer = require('./routes/nodeMailer'),
+    path = require('path');
 
 // ---------------- SERVER CONFIG --------------- //    
 require("dotenv").config();
@@ -37,6 +38,12 @@ app.use(function(req, res, next) {
 // use this errorHandler to format the error
 app.use(errorHandler);
 
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('dev-front/build'))
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'dev-front', 'build', 'index.html'))
+    })
+}
 
 app.listen(process.env.PORT || 3001, () => {
     console.log(`Server is listening`);
